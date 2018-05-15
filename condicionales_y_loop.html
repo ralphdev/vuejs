@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Condicionales y Loop</title>
+</head>
+<body>
+
+	<!--
+		[v-show] true o false pero la diferencia entrel v-if
+		que el v-show solo agrega la propiedad css display:none si fuera falso
+
+		Como Vue es Reactivo puedo hacer cambios desde la consola del navegador
+		app.tareas[0].completed = false //para decier que la primera tarea es incompleta
+
+
+		y desde el navegador agregar al arreglo de forma de objeto una nueva tarea
+		app.tareas.push({title:"CSS3", completed:true})
+
+
+	-->
+	
+
+	<div id="app">
+		<h1 v-if="message.length > 2">Hola <span v-text="message"></span></h1>
+		<h1 v-else>Profavor Escribeme</h1>
+		<input type="text" v-model="message">
+
+
+		<h2>Lista de tareas</h2>
+		<ul>
+			<li v-for="tarea in tareas">
+				<span v-text="tarea.title"></span>
+				<small v-if="tarea.completed">Tarea Completada</small>
+				<small v-else>Tarea incompleta</small>
+			</li>
+		</ul>
+	</div>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				message: "",
+				tareas: [
+					{title:"Aprende Angular", completed: true},
+					{title:"Aprende PHP", completed: true},
+					{title:"Aprende HTML", completed: true},
+					{title:"Aprende Git", completed: false}
+				]
+			}
+
+		});
+	</script>
+</body>
+</html>
